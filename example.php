@@ -102,7 +102,7 @@ try
     $response = $request->setSearchIndex('Books')
         ->setAuthor('John Grisham')
         ->setBookBeforeYear(1991)
-        ->setBookAfterYear(1969)
+        ->setBookAfterYear(1979)
         ->setResponseGroup('ItemAttributes')
         ->setSort('titlerank')
         ->itemSearch();

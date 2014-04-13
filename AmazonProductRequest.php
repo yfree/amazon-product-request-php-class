@@ -1251,7 +1251,6 @@ class AmazonProductRequest
             
             default:
                 return $response;
-            break;
         }
     }
     

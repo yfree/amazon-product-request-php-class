@@ -12,7 +12,7 @@ AmazonProductRequest requires PHP Version >= 5.4.0.
 PHP's cURL extension is also required in order to make the REST requests.
 
 ## Initialization
-You probably want to initialize AmazonProductRequest by creating a new instance.
+You probably want to initialize AmazonProductRequest by creating a new instance.  
 The required parameters are your Amazon Access Key, Secret Access Key, Associate Tag, and Version of the API.
 
 ```php
@@ -91,7 +91,7 @@ $response = $request->setResponseGroup('MostWishedFor')->browseNodeLookup('17228
 ```
 
 For more information about the BrowseNodeLookup operation see:  
-[Amazon's Documentation on BrowseNodeLookup](http://docs.aws.amazon.com/AWSECommerceService/latest/DG/BrowseNodeLookup.html)
+[Amazon's Documentation on BrowseNodeLookup](http://docs.aws.amazon.com/AWSECommerceService/latest/DG/BrowseNodeLookup.html).
 
 ### ItemLookup
 
@@ -123,7 +123,7 @@ $response = $request->setResponseGroup('Large,ItemAttributes')
 ```
 
 For more information about the ItemLookup operation see:  
-[Amazon's Documentation on ItemLookup](http://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemLookup.html)
+[Amazon's Documentation on ItemLookup](http://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemLookup.html).
 
 ### ItemSearch
 
@@ -204,7 +204,7 @@ $response = $request->setSearchIndex('Books')
 ```
 
 For more information about the ItemSearch operation see:  
-[Amazon's Documentation on ItemSearch](http://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemSearch.html)
+[Amazon's Documentation on ItemSearch](http://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemSearch.html).
 
 ## ResetParams
 

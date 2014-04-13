@@ -8,7 +8,7 @@ AmazonProductRequest is intended to make requests to the Amazon Product Advertis
 
 
 ## Requirements
-AmazonProductRequest requires PHP Version >= 5.4.0.
+AmazonProductRequest requires PHP Version >= 5.4.0.  
 PHP's cURL extension is also required in order to make the REST requests.
 
 ## Initialization

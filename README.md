@@ -8,8 +8,8 @@ AmazonProductRequest is intended to make requests to the Amazon Product Advertis
 
 
 ## Requirements
-AmazonProductRequest requires PHP Version >= 5.4.0.  
-PHP's cURL extension is also required in order to make the REST requests.
+* AmazonProductRequest requires PHP Version >= 5.4.0.
+* PHP's cURL extension is also required in order to make the REST requests.
 
 ## Initialization
 You probably want to initialize AmazonProductRequest by creating a new instance.  
@@ -39,7 +39,7 @@ Amazon requires a 1 second delay between requests, so if you want to make more t
 
 ### setConfigLocation($location)
 
-This will change the location (i.e. co.uk, fr, etc.). The member variable $LOCATIONS contains a list of valid values. The default value is 'com'.
+This will change the location (e.g. co.uk, fr, etc.). The member variable **LOCATIONS** contains a list of valid values. The default value is 'com'.
 
 ### setConfigResponseFormat($format)
 
@@ -51,14 +51,12 @@ The secret key is not actually sent as a parameter, rather it is used to create 
 
 ### setConfigSsl($ssl)
 
-AmazonProductRequest supports requests over SSL, however a file containing the Certificate Authority Root Certificates must be present and references by the member variable $CERTPATH. Valid values are true and false.
+AmazonProductRequest supports requests over SSL, however a file containing the Certificate Authority Root Certificates must be present and references by the member variable **CERTPATH**. Valid values are true and false.
 
 All configuration options can be chained like this:
 
 ```php
-<?php
 $request->setConfigSsl(true)->setConfigResponseFormat('string');
-?>
 ```
 
 ## Parameters
@@ -79,15 +77,11 @@ The only parameter setter that can be used for this operation is:
 Example:
 
 ```php
-<?php
 $response = $request->browseNodeLookup('172282');
-?>
 ```
 
 ```php
-<?php
 $response = $request->setResponseGroup('MostWishedFor')->browseNodeLookup('172282');
-?>
 ```
 
 For more information about the BrowseNodeLookup operation see:  
@@ -108,18 +102,14 @@ The parameter setters that are currently supported for this operation are:
 Example:
 
 ```php
-<?php
 $response = $request->itemLookup('B004V4IPCQ');
-?>
 ```
 
 ```php
-<?php
 $response = $request->setResponseGroup('Large,ItemAttributes')
             ->setSearchIndex('Electronics')
             ->setIdType('SKU')
             ->itemLookup('70A29000NA');
-?>
 ```
 
 For more information about the ItemLookup operation see:  
@@ -149,29 +139,25 @@ The parameter setters that are currently supported for this operation are:
 
 Example:
 ```php
-<?php
 $response = $request->setResponseGroup('Medium')
                     ->setItemPage(2)
                     ->setSearchIndex('All')
                     ->itemSearch('dog cat');
-?>
 ```
 
 ```php
-<?php
 $response = $request->setResponseGroup('Large')
                     ->setItemPage(1)
                     ->setSearchIndex('Shoes')
                     ->setBrand('nike')
                     ->itemSearch();
-?>
 ```
 Additionally, when Search Index is set to ‘Books', Power Search parameters can be used.
 
 #### Power Search
 
 Amazon offers a powerful conditional search query that can be used when searching for books via itemSearch. Using a Search Index of 'Books' is necessary when using these parameters. AmazonProductRequest supports using some of the Power Search fields because they are not possible outside of the Power Search. For each Power Search Parameter used, they will be added to the final Power parameter using the 'and' keyword. Other keywords such as 'or' are not supported at this time.
-Power Search Strings are maintained in a separate variable called $powerStrings, which are used to build the Power parameter. The setters for these parameters all have the prefix 'Book'.
+Power Search Strings are maintained in a separate variable called **powerStrings**, which are used to build the Power parameter. The setters for these parameters all have the prefix 'Book'.
 This is a list of supported Power Search setters:
 
 * setBookAfterYear($afterYear)
@@ -182,25 +168,21 @@ This is a list of supported Power Search setters:
 
 Example:
 ```php
-<?php
 $response = $request->setSearchIndex('Books')
     ->setAuthor('John Grisham')
     ->setBookBeforeYear(1991)
-    ->setBookAfterYear(1969)
+    ->setBookAfterYear(1979)
     ->setResponseGroup('ItemAttributes')
     ->setSort('titlerank')
     ->itemSearch();
-?>
 ```
 
 ```php
-<?php
 $response = $request->setSearchIndex('Books')
     ->setBookDuringYear(1995)
     ->setBookSubject('fiction')
     ->setResponseGroup('Large,ItemAttributes')
     ->itemSearch('magic');
-?>
 ```
 
 For more information about the ItemSearch operation see:  
@@ -215,7 +197,7 @@ Parameters are maintained between requests. However, you can clear them by calli
 Remember, Amazon requires a 1 second delay between requests. When looping, the delay must be turned on following the first request.
 
 ## Exception Handling
-Exceptions are thrown when invalid values have been passed to a setter or the constructor. Additionally, execRequest will fail if the cURL request is not successful, if an invalid xml response is received, or if the Amazon API responds with an error (or multiple errors). execRequest will then return false and the member variable errorMsg will populate. An exception is thrown by the operation method when an execRequest fails. The user of this class can then decide how to handle exceptions by creating try and catch blocks.
+Exceptions are thrown when invalid values have been passed to a setter or the constructor. Additionally, execRequest will fail if the cURL request is not successful, if an invalid xml response is received, or if the Amazon API responds with an error (or multiple errors). execRequest will then return false and the member variable **errorMsg** will populate. An exception is thrown by the operation method when an execRequest fails. The user of this class can then decide how to handle exceptions by creating try and catch blocks.
 
 ## Extending the Class
 
@@ -225,16 +207,13 @@ All that is required is the addition of an accessor and mutator for adding a par
 Example:
 
 ```php
-<?php
 public function get<Param>()
 {
     return isset($this->params[<Param>]) ? $this->params[<Param>] : null;
 }
-?>	
 ```
 
 ```php
-<?php
 public function set<Param>($param)
 {
     if (<Param Validation Condition> === false)
@@ -246,16 +225,14 @@ public function set<Param>($param)
 		
     return $this;
 }
-?>
 ```
 
 ### Adding an operation 
-All that is required is the addition of the new operation method. It must set the Operation parameter and any argument specific to the operation, appending these with the other parameters that have been set in the member variable $params into a new parameter array. Error checking specific to the operation should also be done within this method. 
+All that is required is the addition of the new operation method. It must set the Operation parameter and any argument specific to the operation, appending these with the other parameters that have been set in the member variable **params** into a new parameter array. Error checking specific to the operation should also be done within this method. 
 
 Example: 
 
 ```php
-<?php
 $finalParams['Operation'] = <Operation>;
 $finalParams = array_merge($this->params, $finalParams);
 
@@ -268,15 +245,13 @@ if (<Operation Argument> !== null)
 		    
     $finalParams[<Operation Argument>] = <Operation Argument>;
 }
-?>
 ```
 
-After this is done, the operation method should call execRequest, passing these final parameters as an associative array. You should also then check to see if execRequest returned false. Afterward, return the response, which will be formatted properly upon success.
+After this is done, the operation method should call execRequest, passing these final parameters as an associative array. You should also then check to see if execRequest returned false. If so, **errorMsg** would have been properly populated and can be thrown as an exception. Afterward, return the response, which will be formatted properly upon success.
 
 Example:
 
 ```php
-<?php
 $response = $this->execRequest($finalParams);
 		
 if ($response === false)
@@ -285,6 +260,5 @@ if ($response === false)
 }
 		
 return $response;
-?>
 ```
 

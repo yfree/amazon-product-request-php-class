@@ -1192,7 +1192,8 @@ class AmazonProductRequest
     }
     
     /* Executes request using cURL.
-     * For SSL, 'cacert.pem' must be present in the class's directory.
+     * For SSL, a CA Root Certificates file is required. The path is
+     * defined by CERTPATH.
      * @param array $requestParams appended with operation specific
      *     fields
      * @return mixed string|SimpleXMLElement|array|boolean - false if 

@@ -552,7 +552,7 @@ class AmazonProductRequest
         {
             $this->params['Availability'] = 'Available';
         }
-        else if ($availability === false)
+        elseif ($availability === false)
         {
             if (isset($this->params['Availability']))
             {

@@ -1283,8 +1283,9 @@ class AmazonProductRequest
     private function xmlToArray($xml)
     {
         $xml = simplexml_load_string($xml);
+        /* Xml has to be encoded in json before it can be decoded 
+           as an associative array. */
         $json = json_encode($xml);
-        /* Decode as associative array. */
         $array = json_decode($json, true);
         
         return $array;

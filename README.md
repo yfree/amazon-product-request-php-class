@@ -228,7 +228,7 @@ public function set<Param>($param)
 ```
 
 ### Adding an operation 
-All that is required is the addition of the new operation method. It must set the Operation parameter and any argument specific to the operation, appending these with the other parameters that have been set in the member variable **params** into a new parameter array. Error checking specific to the operation should also be done within this method. 
+All that is required is the addition of the new operation method. It must set the Operation parameter and, if necessary, a parameter specific to the operation (such as 'keywords' for itemSearch). You must append these new parameters with the other parameters that have been set in the member variable **params** into a new parameter array. Error checking specific to the operation should also be done within this method. 
 
 Example: 
 
@@ -236,18 +236,18 @@ Example:
 $finalParams['Operation'] = <Operation>;
 $finalParams = array_merge($this->params, $finalParams);
 
-if (<Operation Argument> !== null)
+if (<Operation Specific Param> !== null)
 {
     if (<Param Validation Condition> === false)
     {
         throw new Exception('Invalid <Param> Parameter passed to <Operation>.');
     }
 		    
-    $finalParams[<Operation Argument>] = <Operation Argument>;
+    $finalParams[<Operation Specific Param>] = <Param Argument>;
 }
 ```
 
-After this is done, the operation method should call execRequest, passing these final parameters as an associative array. You should also then check to see if execRequest returned false. If so, **errorMsg** would have been properly populated and can be thrown as an exception. Afterward, return the response, which will be formatted properly upon success.
+After this is done, the operation method should call execRequest, passing the finalParams array. You should also then check to see if execRequest returned false. If so, **errorMsg** would have been properly populated and can be thrown as an exception. Afterward, return the response, which will be formatted properly upon success in execRequest.
 
 Example:
 

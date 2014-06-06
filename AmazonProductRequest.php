@@ -542,6 +542,8 @@ class AmazonProductRequest
     }
     
     /* Availability Parameter setter.
+     * When set to true, only available items are returned.
+     * When set to false, this filter is disabled.
      * @param boolean $availability
      * @return AmazonProductRequest
      * @access public

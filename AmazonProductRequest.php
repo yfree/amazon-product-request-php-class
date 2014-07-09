@@ -1119,7 +1119,7 @@ class AmazonProductRequest
     private function buildRequest($requestParams)    
     {      
         $requestParams['Service'] = 'AWSECommerceService';
-        $requestParams['Timestamp'] = gmdate("Y-m-d\TH:i:s\Z");
+        $requestParams['Timestamp'] = gmdate('Y-m-d\TH:i:s\Z');
     
         $host = 'webservices.amazon.' . $this->config['location'];
         $path = '/onca/xml';
@@ -1138,12 +1138,12 @@ class AmazonProductRequest
                                 $paramsString));
 
         /* Hash the signing string using the private key and encode it. */
-        $signature = hash_hmac("sha256", $stringToSign, 
+        $signature = hash_hmac('sha256', $stringToSign, 
                                $this->config['secretKey'], true);
         $signature = rawurlencode(base64_encode($signature));
         
         /* Build the request and append the signature. */
-        $request = $host . $path . "?". $paramsString . "&Signature=" . 
+        $request = $host . $path . '?'. $paramsString . '&Signature=' . 
                    $signature;    
         
         return $request;
@@ -1180,8 +1180,8 @@ class AmazonProductRequest
         
         /* Extract error message(s) from xml. */    
         $namespaces = $xml->getNamespaces();
-        $xml->registerXPathNamespace("ns", array_shift($namespaces));
-        $error = $xml->xpath("//ns:Error/ns:Message");
+        $xml->registerXPathNamespace('ns', array_shift($namespaces));
+        $error = $xml->xpath('//ns:Error/ns:Message');
         
         /* Set errorMsg to a string of the error mesage(s) if they exist. */
         if (isset($error[0]))

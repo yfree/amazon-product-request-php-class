@@ -93,8 +93,6 @@ class AmazonProductRequest
     {                
         try
         {
-
-        
             $this->setConfigSecretKey($secretKey);
             $this->setConfigLocation($location);   
             $this->setAWSAccessKeyId($keyId);
@@ -105,10 +103,10 @@ class AmazonProductRequest
         {
             throw $e;
         }
-
-            $this->config['ssl'] = false;
-            $this->config['delay'] = false;
-            $this->config['responseFormat'] = 'simplexml';
+        
+        $this->config['ssl'] = false;
+        $this->config['delay'] = false;
+        $this->config['responseFormat'] = 'simplexml';
     }
     
     /******************

@@ -91,15 +91,24 @@ class AmazonProductRequest
     public function __construct($keyId, $tag, $secretKey, $version, 
                                 $location = 'com')
     {                
-        $this->setConfigSecretKey($secretKey);
-        $this->setConfigLocation($location);
-        $this->config['ssl'] = false;
-        $this->config['delay'] = false;
-        $this->config['responseFormat'] = 'simplexml';
-           
-        $this->setAWSAccessKeyId($keyId);
-        $this->setAssociateTag($tag);
-        $this->setVersion($version);   
+        try
+        {
+
+        
+            $this->setConfigSecretKey($secretKey);
+            $this->setConfigLocation($location);   
+            $this->setAWSAccessKeyId($keyId);
+            $this->setAssociateTag($tag);
+            $this->setVersion($version);
+        }
+        catch (Exception $e)
+        {
+            throw $e;
+        }
+
+            $this->config['ssl'] = false;
+            $this->config['delay'] = false;
+            $this->config['responseFormat'] = 'simplexml';
     }
     
     /******************

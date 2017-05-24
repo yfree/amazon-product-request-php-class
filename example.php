@@ -17,7 +17,7 @@ try
     /* Set our response to array format. */
     $request->setConfigResponseFormat('array');
 
-    /* BrowsenodeLookup.
+    /* BrowseNodeLookup.
      * Let's look up some information about the browse node 172282 
      * which currently represents Electronics in the US.
      * The default Response Group BrowseNodeInfo will be automatically
@@ -51,7 +51,7 @@ try
     /* Parameters are maintained request to request, so you don't have to 
      * keep setting them. However, parameters that are specified as the 
      * operation argument are not kept between requests. 
-     * You can clear your Parameters by using resetParams. 
+     * You can clear your parameters by using resetParams. 
      * This will not clear your credentials or the request options that 
      * are not sent as parameters such as SSL or responseFormat. */
     $request->resetParams();
@@ -96,7 +96,7 @@ try
      * These are only useful when Search Index is Books.
      * Parameters that are Power Search Parameters are marked in their 
      * setters with the prefix 'Book'.
-     * Let's return book by John Grisham that were published after 1969 
+     * Let's return books by John Grisham that were published after 1969 
      * and before 1991. We'll use the ItemAttributes Response Group. 
      * Let's also sort the results Alphabetically. */
     $response = $request->setSearchIndex('Books')
@@ -109,7 +109,7 @@ try
     //print_r($response);
 
     /* Finally, let's do a search for Books that are fiction 
-     * and published during 1995 containg the keyword 'magic'.
+     * and published during 1995 containing the keyword 'magic'.
      * We'll use the Response Groups Large and ItemAttributes.
      */
     $response = $request->resetParams()
